@@ -1,7 +1,11 @@
-const express = require('express');
+const http = require('http');
 
-const app = express();
+const server = http.createServer((req, res) => {
+    res.setHeader('Content-Type', 'application/javascript');
+    res.end("console.log('hello');");
+});
 
-app.get('/', (req, res) => res.send(`<script>alert(1)</script>`));
-
-app.listen(3000, () => console.log('Server started'));
+const port = 3000;
+server.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
